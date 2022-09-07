@@ -9,10 +9,14 @@
 
 @section('content')
 <p>ここが本文のコンテンツです</p>
+<p>Controller value<br>'message' = {{ $message }}</p>
+<!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
 <ul>
     @each('components.item',$data,'item')
 </ul>
 @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
+
+
 
 <!-- @component ('components.message')
 @slot('msg_title')

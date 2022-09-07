@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('hello', [HelloController::class, 'index']);
+
+Route::get('log', [HelloController::class, 'log']);
