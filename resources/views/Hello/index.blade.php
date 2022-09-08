@@ -8,17 +8,32 @@
 @endsection
 
 @section('content')
-<p>ここが本文のコンテンツです</p>
-<p>Controller value<br>'message' = {{ $message }}</p>
-<!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
-<ul>
-    @each('components.item',$data,'item')
-</ul>
-@include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
+<form method="POST" action="">
+    @csrf
+    <p>ここが本文のコンテンツです</p>
+    <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
 
+    <table>
+        @foreach($data as $item)
+        <tr>
+            <th>{{$item['name']}}</th>
+            <td>{{$item['email']}}</td>
+        </tr>
+        @endforeach
+    </table>
 
+    <p>これは<middleware>google.com</middleware>へのリンクです</p>
+    <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
 
-<!-- @component ('components.message')
+    @if(!isset( $status ))
+    @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
+    @else
+    @include('components.message',['msg_title'=>'POST!','msg_content'=>'POST送信されました!'])
+    @endif
+
+    <button type="submit" class="btn btn-outline-warning">redirect</button>
+
+    <!-- @component ('components.message')
 @slot('msg_title')
 CAUTION!
 @endslot
@@ -27,9 +42,8 @@ CAUTION!
 これはメッセージの表示です。
 @endslot
 
-
 @endcomponent -->
-
+</form>
 @endsection
 
 @section('footer')
