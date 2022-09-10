@@ -8,30 +8,39 @@
 @endsection
 
 @section('content')
-<form method="POST" action="">
+<form method="POST" action="/hello">
     @csrf
     <p>ここが本文のコンテンツです</p>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
-
+    <p>データを追加</p>
+    <tr>
+        <th>name:<input type="text" name="name"></th>
+    </tr>
+    <tr>
+        <th>name:<input type="text" name="email"></th>
+    </tr>
+    <button type="submit">追加</button>
     <table>
         @foreach($data as $item)
         <tr>
             <th>{{$item['name']}}</th>
             <td>{{$item['email']}}</td>
         </tr>
+
         @endforeach
     </table>
 
     <p>これは<middleware>google.com</middleware>へのリンクです</p>
     <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
 
-    @if(!isset( $status ))
+    @if(!isset($msg))
     @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
     @else
-    @include('components.message',['msg_title'=>'POST!','msg_content'=>'POST送信されました!'])
+    @include('components.message',['msg_title'=>'POST!','msg_content'=>$msg.'が入力されました!'])
     @endif
 
-    <button type="submit" class="btn btn-outline-warning">redirect</button>
+    <input type="text" name="msg">
+    <button type="submit" class="btn btn-outline-warning">POST</button>
 
     <!-- @component ('components.message')
 @slot('msg_title')

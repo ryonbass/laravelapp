@@ -11,14 +11,18 @@ class HelloController extends Controller
     //
     public function index(Request $request)
     {
-        $status = '';
-        return view('hello.index', ['data' => $request->data, 'status' => $status]);
+        return view('hello.index', ['data' => $request->data]);
     }
 
     public function post(Request $request)
     {
-        $status = 'post';
-        return view('hello.index', ['data' => $request->data, 'status' => $status]);
+        $msg = $request->msg;
+        $validate_rule = [
+            'name' => 'required',
+            'email' => 'email',
+        ];
+        $this->validate($request, $validate_rule);
+        return view('hello.index', ['data' => $request->data, 'msg' => $msg]);
     }
 
     public function log()
@@ -30,6 +34,7 @@ class HelloController extends Controller
         // Log::warning("warning ログ!");
         // Log::notice("notice ログ!");
         // Log::info("info ログ!");
-        Log::debug("debug ログ!");
+        // Log::debug("debug ログ!");
+        return view('hello.log');
     }
 }
