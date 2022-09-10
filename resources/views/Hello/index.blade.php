@@ -13,6 +13,15 @@
     <p>ここが本文のコンテンツです</p>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
     <p>データを追加</p>
+    @if(count($errors) > 0 )
+    <div>
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+    @endif
     <tr>
         <th>name:<input type="text" name="name"></th>
     </tr>
