@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use LDAP\Result;
 
+use function PHPUnit\Framework\isNull;
+
 class HelloController extends Controller
 {
     //
@@ -17,11 +19,24 @@ class HelloController extends Controller
     public function post(Request $request)
     {
         $msg = $request->msg;
-        $validate_rule = [
-            'name' => 'required',
-            'email' => 'email',
-        ];
-        $this->validate($request, $validate_rule);
+        if (empty($msg)) {
+            if (isNull($request->name || $request->email)) {
+                $validate_rule = [
+                    'name' => 'required',
+                    'email' => 'email',
+                ];
+                $this->validate($request, $validate_rule);
+            }
+        }
+
+        return view('hello.index', ['data' => $request->data, 'msg' => $msg]);
+    }
+
+    public function ajax(Request $request)
+    {
+        $msg = $request;
+        dd($msg);
+
         return view('hello.index', ['data' => $request->data, 'msg' => $msg]);
     }
 

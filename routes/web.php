@@ -27,3 +27,4 @@ Route::get('hello', [HelloController::class, 'index'])
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('log', [HelloController::class, 'log']);
+Route::POST('ajax', [HelloController::class, 'ajax']);

@@ -20,7 +20,7 @@
     }
 </style>
 
-<div class="message">
-    <p class="msg_title">{{ $msg_title }}</p>
-    <p class="msg_content">{{ $msg_content }}</p>
+<div class="message row">
+    <div class="msg_title col-2">{{ $msg_title }}</div>
+    <div class="msg_content col-9">{{ $msg_content }}</div>
 </div>
