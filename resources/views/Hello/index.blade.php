@@ -14,21 +14,42 @@
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
     <p>データを追加</p>
     @if(count($errors) > 0 )
-    <div>
-        <ul>
-            @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
+    <p>入力に誤りがあります。再入力してください。</p>
     @endif
-    <tr>
-        <th>name:<input type="text" name="name"></th>
-    </tr>
-    <tr>
-        <th>name:<input type="text" name="email"></th>
-    </tr>
-    <button type="submit">追加</button>
+    <table>
+        @csrf
+        @error('name')
+        <tr>
+            <th>ERROR</th>
+            <td>{{$message}}</td>
+        </tr>
+        @enderror
+        <tr>
+            <th>name:</th>
+            <td><input type="text" name="name" value="{{old('name')}}"></td>
+        </tr>
+        @error('email')
+        <tr>
+            <th>ERROR</th>
+            <td>{{$message}}</td>
+        </tr>
+        @enderror
+        <tr>
+            <th>email:</th>
+            <td><input type="text" name="email" value="{{old('email')}}"></td>
+        </tr>
+        @error('age')
+        <tr>
+            <th>ERROR</th>
+            <td>{{$message}}</td>
+        </tr>
+        @enderror
+        <tr>
+            <th>age:</th>
+            <td><input type=" text" name="age" value="{{old('age')}}"></td>
+        </tr>
+    </table>
+    <button type="submit" class="btn btn-success">Send</button>
     <table>
         @foreach($data as $item)
         <tr>
@@ -45,7 +66,7 @@
     @if(!isset($msg))
     @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
     @else
-    @include('components.message',['msg_title'=>'POST!','msg_content'=>$msg.'が入力されました!'])
+    @include('components.message',['msg_title'=>'POST!','msg_content'=>$msg.' が入力されました!'])
     @endif
 
     <input type="text" name="msg">

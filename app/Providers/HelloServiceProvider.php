@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Http\Controllers\HelloController;
+use Validator;
+use App\Http\Validators\HelloValidator;
 
 class HelloServiceProvider extends ServiceProvider
 {
