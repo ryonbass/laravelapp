@@ -17,7 +17,6 @@
     <p>入力に誤りがあります。再入力してください。</p>
     @endif
     <table>
-        @csrf
         @error('name')
         <tr>
             <th>ERROR</th>
@@ -51,12 +50,17 @@
     </table>
     <button type="submit" class="btn btn-success">Send</button>
     <table>
-        @foreach($data as $item)
         <tr>
-            <th>{{$item['name']}}</th>
-            <td>{{$item['email']}}</td>
+            <th>Name</th>
+            <th>Mail</th>
+            <th>Age</th>
         </tr>
-
+        @foreach($items as $item)
+        <tr>
+            <td>{{ $item->name }}</td>
+            <td>{{ $item->mail }}</td>
+            <td>{{ $item->age }}</td>
+        </tr>
         @endforeach
     </table>
 

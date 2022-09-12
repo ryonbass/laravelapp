@@ -8,18 +8,21 @@ use App\Http\Requests\HelloRequest;
 use LDAP\Result;
 use Illuminate\Support\Facades\Validator; //バリデータを作成する時に使用
 use function PHPUnit\Framework\isNull;
+use Illuminate\Support\Facades\DB;
 
 class HelloController extends Controller
 {
     //
     public function index(Request $request)
     {
-        return view('hello.index', ['data' => $request->data]);
+        $items = DB::select('select * from people');
+        return view('hello.index', ['items' => $items]);
     }
 
     public function post(HelloRequest $request)
     {
         //下記のバリデータを作有効にしたい時　HelloRequest->Requestに変更
+        //下記はコメントアウトしても動きます
         $rules = [
             'name' => 'required',
             'email' => 'email',
@@ -50,7 +53,7 @@ class HelloController extends Controller
         //ここまで
 
         $msg = $request->msg;
-        return view('hello.index', ['data' => $request->data, 'msg' => $msg]);
+        return view('hello.index', ['msg' => $msg]);
     }
 
     public function log()
