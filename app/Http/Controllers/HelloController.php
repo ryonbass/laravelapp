@@ -15,45 +15,68 @@ class HelloController extends Controller
     //
     public function index(Request $request)
     {
-        $items = DB::select('select * from people');
+        // $items = DB::select('select * from people'); or
+        if (isset($request->id)) {
+            $param = ['id' => $request->id];
+            $items = DB::select(
+                'select * from people where id = :id',
+                $param
+            );
+        } else {
+            $items = DB::select('select * from people');
+        }
+
         return view('hello.index', ['items' => $items]);
     }
 
-    public function post(HelloRequest $request)
+    public function post(Request $request)
     {
         //下記のバリデータを作有効にしたい時　HelloRequest->Requestに変更
         //下記はコメントアウトしても動きます
-        $rules = [
-            'name' => 'required',
-            'email' => 'email',
-            'age' => 'numeric',
-        ];
 
-        $messages = [
-            'name.required' => '名前を入力して',
-            'email.email' => 'メールアドレスを入力して',
-            'age.numeric' => '整数で入力してね',
-            'age.min' => '0以上でよろしく',
-            'age.max' => '200以下でよろしく',
-        ];
+        // $rules = [
+        //     'name' => 'required',
+        //     'mail' => 'email',
+        //     'age' => 'numeric',
+        // ];
 
-        $validator = validator::make($request->all(), $rules, $messages);
-        $validator->sometimes('age', 'min:0', function ($input) {
-            return !is_int($input->age);
-        });
-        $validator->sometimes('age', 'max:200', function ($input) {
-            return !is_int($input->age);
-        });
+        // $messages = [
+        //     'name.required' => '名前を入力して',
+        //     'mail.email' => 'メールアドレスを入力して',
+        //     'age.numeric' => '整数で入力してね',
+        //     'age.min' => '0以上でよろしく',
+        //     'age.max' => '200以下でよろしく',
+        // ];
 
-        if ($validator->fails()) {
-            return redirect('/hello')
-                ->withErrors($validator)
-                ->withInput();
-        }
+        // $validator = validator::make($request->all(), $rules, $messages);
+        // $validator->sometimes('age', 'min:0', function ($input) {
+        //     return !is_int($input->age);
+        // });
+        // $validator->sometimes('age', 'max:200', function ($input) {
+        //     return !is_int($input->age);
+        // });
+
+        // if ($validator->fails()) {
+        //     return redirect('/hello')
+        //         ->withErrors($validator)
+        //         ->withInput();
+        // }
         //ここまで
-
+        $items = DB::select('select * from people');
         $msg = $request->msg;
-        return view('hello.index', ['msg' => $msg]);
+        return view('hello.index', ['msg' => $msg, 'items' => $items]);
+    }
+
+    public function add(Request $request)
+    {
+        $createMsg = 'データを入力してください';
+        return view('hello.add', ['createMsg' => $createMsg]);
+    }
+
+    public function create(HelloRequest $request)
+    {
+        $createMsg = '登録できました！';
+        return view('hello.add', ['createMsg' => $createMsg]);
     }
 
     public function log()

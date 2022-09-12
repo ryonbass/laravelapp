@@ -48,7 +48,7 @@
 
         th {
             background-color: #999;
-            color: fff;
+            color: #fff;
             padding: 5px 10px;
         }
 
@@ -93,7 +93,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="#">Action</a></li>
-                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li><a class="dropdown-item" href="{{url('/add')}}">Add</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

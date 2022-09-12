@@ -14,7 +14,7 @@ class HelloRequest extends FormRequest
      */
     public function authorize()
     {
-        if ($this->path() == 'hello') {
+        if ($this->path() == 'hello' || 'add') {
             return true;
         } else {
             return false;
@@ -31,7 +31,7 @@ class HelloRequest extends FormRequest
         return [
             //
             'name' => 'required',
-            'email' => 'email',
+            'mail' => 'email',
             // 'age' => 'numeric | between:0,200',
             'age' => ['numeric', 'between:0,200', new Myrule(5)],
         ];
@@ -41,7 +41,7 @@ class HelloRequest extends FormRequest
     {
         return [
             'name.required' => '名前は必ず入力してください',
-            'email.email' => 'メールアドレスが必要です',
+            'mail.email' => 'メールアドレスが必要です',
             'age.numeric' => '整数で入力してください',
             'age.between' => '0~200の間で入力してください',
         ];

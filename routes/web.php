@@ -27,3 +27,6 @@ Route::get('hello', [HelloController::class, 'index']);
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('log', [HelloController::class, 'log']);
+//データ登録
+Route::get('add', [HelloController::class, 'add']);
+Route::post('add', [HelloController::class, 'create']);
