@@ -30,3 +30,7 @@ Route::get('log', [HelloController::class, 'log']);
 //データ登録
 Route::get('add', [HelloController::class, 'add']);
 Route::post('add', [HelloController::class, 'create']);
+//データ編集
+Route::get('edit', [HelloController::class, 'edit']);
+// Route::get('edit', [HelloController::class, 'editSelect']);
+Route::post('edit', [HelloController::class, 'update']);

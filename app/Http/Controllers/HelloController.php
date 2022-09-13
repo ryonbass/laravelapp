@@ -75,9 +75,47 @@ class HelloController extends Controller
 
     public function create(HelloRequest $request)
     {
+        $param = [
+            'name' => $request->name,
+            'mail' => $request->mail,
+            'age' => $request->age,
+        ];
+        DB::insert('insert into people (name,mail,age) values (:name,:mail,:age)', $param);
+
         $createMsg = '登録できました！';
         return view('hello.add', ['createMsg' => $createMsg]);
     }
+
+    public function edit(Request $request)
+    {
+        $items = DB::select('select * from people');
+
+        $param = ['id' => $request->id];
+        $item = DB::select('select * from people where id = :id', $param);
+        return view('hello.edit', ['form' => $item[0], 'items' => $items]);
+    }
+
+    // public function editSelect(Request $request)
+    // {
+    //     $items = DB::select('select * from people');
+
+    //     $param = ['id' => $request->id];
+    //     $item = DB::select('select * from people where id = :id', $param);
+    //     return view('hello.edit', ['form' => $item[0], 'items' => $items]);
+    // }
+
+    public function update(Request $request)
+    {
+        $param = [
+            'id' => $request->id,
+            'name' => $request->name,
+            'mail' => $request->mail,
+            'age' => $request->age,
+        ];
+        DB::update('update people set name = :name, mail = :mail, age = :age where id = :id', $param);
+        return redirect('/hello');
+    }
+
 
     public function log()
     {

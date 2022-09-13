@@ -33,7 +33,7 @@ class HelloRequest extends FormRequest
             'name' => 'required',
             'mail' => 'email',
             // 'age' => 'numeric | between:0,200',
-            'age' => ['numeric', 'between:0,200', new Myrule(5)],
+            'age' => ['numeric', 'between:0,200'], //new Myrule(5)
         ];
     }
 
