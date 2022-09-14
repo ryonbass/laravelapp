@@ -90,19 +90,8 @@ class HelloController extends Controller
     {
         $items = DB::select('select * from people');
 
-        $param = ['id' => $request->id];
-        $item = DB::select('select * from people where id = :id', $param);
-        return view('hello.edit', ['form' => $item[0], 'items' => $items]);
+        return view('hello.edit', ['items' => $items]);
     }
-
-    // public function editSelect(Request $request)
-    // {
-    //     $items = DB::select('select * from people');
-
-    //     $param = ['id' => $request->id];
-    //     $item = DB::select('select * from people where id = :id', $param);
-    //     return view('hello.edit', ['form' => $item[0], 'items' => $items]);
-    // }
 
     public function update(Request $request)
     {
