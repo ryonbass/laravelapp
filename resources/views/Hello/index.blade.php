@@ -51,7 +51,3 @@ CAUTION!
 @endcomponent -->
 </form>
 @endsection
-
-@section('footer')
-copyright 2022 ryonbass.
-@endsection

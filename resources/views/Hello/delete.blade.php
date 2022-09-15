@@ -3,9 +3,9 @@
 @section('title','Laravel!')
 
 @section('content')
-<form action="/edit" method="post" id="userData">
+<p>{{ $msg }}</p>
+<form action="/delete" method="post" id="userData">
     @csrf
-
     <table>
         <tr>
             <th>edit</th>
@@ -29,27 +29,9 @@
         @endforeach
     </table>
 
-    <button type="button" class="btn btn-primary" onclick="selectUser()">Select</button>
-
-    <p>データを編集</p>
+    <p>データを削除</p>
     <input type="hidden" name="id" id="id" value="">
-    <table>
-        <tr>
-            <th>name:</th>
-            <td><input type="text" name="name" id="name" value=""></td>
-        </tr>
-
-        <tr>
-            <th>email:</th>
-            <td><input type="text" name="mail" id="mail" value=""></td>
-        </tr>
-
-        <tr>
-            <th>age:</th>
-            <td><input type=" text" name="age" id="age" value=""></td>
-        </tr>
-    </table>
-    <button type="submit" class="btn btn-success">Edit</button>
+    <button type="submit" class="btn btn-danger" onclick="selectUser()">DELETE</button>
 </form>
 @endsection
 
@@ -62,14 +44,5 @@
         //POST送信するIdにラジヲボタンの値を代入
         let element = document.getElementById('id');
         element.value = userId;
-
-        //選択したデータをフォームに反映
-        let userData = ['name', 'mail', 'age'];
-        userData.forEach(function(element) {
-            let selectUserData = document.getElementById(element + userId).value;
-            let editUser = document.getElementById(element);
-            editUser.value = selectUserData;
-        });
-
     }
 </script>

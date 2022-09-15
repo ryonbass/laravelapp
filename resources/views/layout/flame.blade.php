@@ -61,6 +61,7 @@
         .footer {
             text-align: right;
             font-weight: bold;
+            padding: 10px;
         }
     </style>
 </head>
@@ -82,7 +83,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">News</a>
+                            <a class="nav-link active" aria-current="page" href="{{ url('/person') }}">Person</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contents</a>
@@ -94,6 +95,7 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ url('/edit') }}">edit</a></li>
                                 <li><a class="dropdown-item" href="{{url('/add')}}">Add</a></li>
+                                <li><a class="dropdown-item" href="{{url('/delete')}}">delete</a></li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>
@@ -117,7 +119,7 @@
             @yield('content')
         </div>
         <div class="footer">
-            @yield('footer')
+            copyright 2022 ryonbass.
         </div>
     </div>
 </body>

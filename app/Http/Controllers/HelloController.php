@@ -15,17 +15,14 @@ class HelloController extends Controller
     //
     public function index(Request $request)
     {
+
         // $items = DB::select('select * from people'); or
         if (isset($request->id)) {
-            $param = ['id' => $request->id];
-            $items = DB::select(
-                'select * from people where id = :id',
-                $param
-            );
+            $id = $request->id;
+            $items = DB::table('people')->where('id', '<=', $id)->get();
         } else {
-            $items = DB::select('select * from people');
+            $items = DB::table('people')->orderBy('id')->get();
         }
-
         return view('hello.index', ['items' => $items]);
     }
 
@@ -80,7 +77,7 @@ class HelloController extends Controller
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::insert('insert into people (name,mail,age) values (:name,:mail,:age)', $param);
+        DB::table('people')->insert($param);
 
         $createMsg = '登録できました！';
         return view('hello.add', ['createMsg' => $createMsg]);
@@ -88,23 +85,39 @@ class HelloController extends Controller
 
     public function edit(Request $request)
     {
-        $items = DB::select('select * from people');
+        $items = DB::table('people')->get();
 
         return view('hello.edit', ['items' => $items]);
     }
 
     public function update(Request $request)
     {
+        $id = $request->id;
         $param = [
-            'id' => $request->id,
             'name' => $request->name,
             'mail' => $request->mail,
             'age' => $request->age,
         ];
-        DB::update('update people set name = :name, mail = :mail, age = :age where id = :id', $param);
-        return redirect('/hello');
+        DB::table('people')->where('id', $id)->update($param);
+        $items = DB::table('people')->get();
+        return view('hello.edit', ['items' => $items]);
     }
 
+    public function delete(Request $request)
+    {
+        $items = DB::select('select * from people');
+        $msg = '削除するデータを選んでください';
+        return view('hello.delete', ['items' => $items, 'msg' => $msg]);
+    }
+
+    public function remove(Request $request)
+    {
+        $id = $request->id;
+        $msg = '削除しました！';
+        DB::table('people')->where('id', $id)->delete();
+        $items = DB::select('select * from people');
+        return view('hello.delete', ['items' => $items, 'msg' => $msg]);
+    }
 
     public function log()
     {

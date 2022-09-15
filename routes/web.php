@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\PersonController;
 use App\Http\Middleware\HelloMiddleware;
 use App\Http\Middleware\HelloMiddleware2;
 
@@ -30,7 +31,11 @@ Route::get('log', [HelloController::class, 'log']);
 //データ登録
 Route::get('add', [HelloController::class, 'add']);
 Route::post('add', [HelloController::class, 'create']);
+//データ削除
+Route::get('delete', [HelloController::class, 'delete']);
+Route::post('delete', [HelloController::class, 'remove']);
 //データ編集
 Route::get('edit', [HelloController::class, 'edit']);
-// Route::get('edit', [HelloController::class, 'editSelect']);
 Route::post('edit', [HelloController::class, 'update']);
+
+Route::get('person', [PersonController::class, 'index']);
