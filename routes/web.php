@@ -39,3 +39,4 @@ Route::get('edit', [HelloController::class, 'edit']);
 Route::post('edit', [HelloController::class, 'update']);
 
 Route::get('person', [PersonController::class, 'index']);
+Route::post('person', [PersonController::class, 'post']);

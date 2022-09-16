@@ -28,7 +28,7 @@ class HelloController extends Controller
 
     public function post(Request $request)
     {
-        //下記のバリデータを作有効にしたい時　HelloRequest->Requestに変更
+        //下記のバリデータを有効にしたい時　HelloRequest->Requestに変更
         //下記はコメントアウトしても動きます
 
         // $rules = [
