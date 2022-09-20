@@ -4,7 +4,7 @@
 
 @section('menubar')
 @parent
-コンテンツメニュー
+トップページ
 @endsection
 
 @section('content')

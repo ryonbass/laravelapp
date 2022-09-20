@@ -2,6 +2,11 @@
 
 @section('title','Laravel!')
 
+@section('menubar')
+@parent
+DB削除画面
+@endsection
+
 @section('content')
 <p>{{ $msg }}</p>
 <form action="/delete" method="post" id="userData">

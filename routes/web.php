@@ -28,15 +28,27 @@ Route::get('hello', [HelloController::class, 'index']);
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('log', [HelloController::class, 'log']);
+
 //データ登録
 Route::get('add', [HelloController::class, 'add']);
 Route::post('add', [HelloController::class, 'create']);
+
 //データ削除
 Route::get('delete', [HelloController::class, 'delete']);
 Route::post('delete', [HelloController::class, 'remove']);
+
 //データ編集
 Route::get('edit', [HelloController::class, 'edit']);
 Route::post('edit', [HelloController::class, 'update']);
 
+//マイグレーション@find
 Route::get('person', [PersonController::class, 'index']);
 Route::post('person', [PersonController::class, 'post']);
+
+//マイグレーション@add
+Route::get('person/add', [PersonController::class, 'add']);
+Route::post('person/add', [PersonController::class, 'create']);
+
+//マイグレーション@edit
+Route::get('person/edit', [PersonController::class, 'edit']);
+Route::post('person/edit', [PersonController::class, 'update']);

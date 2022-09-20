@@ -2,6 +2,11 @@
 
 @section('title','Laravel!')
 
+@section('menubar')
+@parent
+DB編集画面
+@endsection
+
 @section('content')
 <form action="/edit" method="post" id="userData">
     @csrf

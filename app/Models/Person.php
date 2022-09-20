@@ -19,6 +19,14 @@ class Person extends Model
         'age' => 'integer|min:0|max:150'
     );
 
+    public static $messages = array(
+        'name.required' => '必須項目です',
+        'mail.email' => 'メールアドレスを入力してください',
+        'age.integer' => '数字を入力してください',
+        'age.min' => '0歳以上で入力してください',
+        'age.max' => '150歳以下で入力してください',
+    );
+
 
     //メソッド
     public function getData()

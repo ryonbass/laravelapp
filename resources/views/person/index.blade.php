@@ -4,7 +4,7 @@
 
 @section('menubar')
 @parent
-マイグレーション
+マイグレーション機能＠検索
 @endsection
 
 @section('content')
