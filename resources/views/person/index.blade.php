@@ -24,6 +24,7 @@
     <input type="submit" value="find">
 </form>
 @if(isset($find))
+<span>{{ $input }}歳以上で一番近い人を表示します</span>
 <table>
     <tr>
         <th>Data</th>

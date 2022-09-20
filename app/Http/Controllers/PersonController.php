@@ -44,7 +44,7 @@ class PersonController extends Controller
         $max = $min + 10;
         // $find = Person::where('name', $request->input)->first();
         // $find = Person::find($request->input);
-        $find = Person::ageBig($min)->ageSmall($max)->first();
+        $find = Person::ageBig($min)->ageSmall($max)->orderBy('age', 'asc')->first();
         $param = ['find' => $find, 'input' => $request->input];
         return view('person.index', $param);
     }
