@@ -67,36 +67,40 @@ class PersonController extends Controller
 
     public function edit(Request $request)
     {
-
         // $person = Person::find($request->id);
         $person = DB::table('people')->get();
 
         return view('person.edit', ['forms' => $person]);
     }
 
-    public function update(Person $person, Request $request)
+    public function update(Request $request)
     {
-        // $this->validate($request, Person::$rules, Person::$messages);
-        // $person = Person::find($request->id);
-        // $form = $request->all();
-        // unset($form['_token']);
-        // $person->fill($form)->save();
-        // return redirect('/hello');
-
-        $stop = $request->id;
-
-        // dump($person->name);
-        for ($id = 1; $id <= $stop; $id++) {
-            // $person = Person::find($id);
-            // $person = \App\Models\Person::find($id);
-            // $person = DB::table('people')->where('id', $id)->first();
-            Person::where('id', '=', $id)->update([
-                'name' => $request->name . $id,
-                'mail' => $request->mail . $id,
-                'age' => $request->age . $id,
+        $ids = $request->id; //idの数を数える
+        for ($id = 1; $id <= $ids; $id++) { //idの数だけループ
+            $name = 'name' . $id;
+            $mail = 'mail' . $id;
+            $age = 'age' . $id;
+            $rules = [
+                $name => 'required',
+                $mail => 'email',
+                $age => 'integer',
+            ];
+            $messages = [
+                $name . '.required' => '名前を空白にはできません',
+                $mail . '.email' => 'メールアドレスを入力してください',
+                $age . '.integer' => '半角数字を入力してください',
+            ];
+            $validator = validator::make($request->all(), $rules, $messages);
+            if ($validator->fails()) {
+                return redirect('/person/edit')
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+            DB::table('people')->where('id', $id)->update([
+                'name' => $request->$name,
+                'mail' => $request->$mail,
+                'age' => $request->$age,
             ]);
-            // $person->save();
-            $id++;
         }
         return redirect('/hello');
     }

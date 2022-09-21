@@ -6,26 +6,31 @@
 @parent
 トップページ
 @endsection
+<style>
+    .mainTable {}
+</style>
 
 @section('content')
 <form method="POST" action="/hello">
     @csrf
     <p>ここが本文のコンテンツです</p>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
-    <table>
-        <tr>
-            <th>Name</th>
-            <th>Mail</th>
-            <th>Age</th>
-        </tr>
-        @foreach($items as $item)
-        <tr>
-            <td>{{ $item->name }}</td>
-            <td>{{ $item->mail }}</td>
-            <td>{{ $item->age }}</td>
-        </tr>
-        @endforeach
-    </table>
+    <div class="col mainTable">
+        <table style="margin: 0 auto;">
+            <tr>
+                <th>Name</th>
+                <th>Mail</th>
+                <th>Age</th>
+            </tr>
+            @foreach($items as $item)
+            <tr>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->mail }}</td>
+                <td>{{ $item->age }}</td>
+            </tr>
+            @endforeach
+        </table>
+    </div>
 
     <p>これは<middleware>google.com</middleware>へのリンクです</p>
     <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
