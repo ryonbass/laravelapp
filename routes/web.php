@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
+use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PersonController;
 use App\Http\Middleware\HelloMiddleware;
 use App\Http\Middleware\HelloMiddleware2;
@@ -52,3 +53,12 @@ Route::post('person/add', [PersonController::class, 'create']);
 //マイグレーション@edit
 Route::get('person/edit', [PersonController::class, 'edit']);
 Route::post('person/edit', [PersonController::class, 'update']);
+
+//マイグレーション@delete
+Route::get('person/del', [PersonController::class, 'delete']);
+Route::post('person/del', [PersonController::class, 'remove']);
+
+//Board
+Route::get('board', [BoardController::class, 'index']);
+Route::get('board/add', [BoardController::class, 'add']);
+Route::post('person/add', [BoardController::class, 'create']);

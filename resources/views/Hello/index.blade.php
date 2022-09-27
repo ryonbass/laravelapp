@@ -7,7 +7,9 @@
 トップページ
 @endsection
 <style>
-    .mainTable {}
+    .mainTable {
+        border-radius: 10;
+    }
 </style>
 
 @section('content')

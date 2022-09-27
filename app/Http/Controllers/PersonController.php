@@ -75,8 +75,8 @@ class PersonController extends Controller
 
     public function update(Request $request)
     {
-        $ids = $request->id; //idの数を数える
-        for ($id = 1; $id <= $ids; $id++) { //idの数だけループ
+        $ids = $request->id; //idリストを配列で取得
+        foreach ($ids as $id) { //idの数だけループ
             $name = 'name' . $id;
             $mail = 'mail' . $id;
             $age = 'age' . $id;
@@ -103,5 +103,23 @@ class PersonController extends Controller
             ]);
         }
         return redirect('/hello');
+    }
+
+    public function delete()
+    {
+
+        // $forms = Person::all(); //なぜか最新追加データが欠損する
+        $forms = DB::table('people')->get();
+        return view('person.del', ["forms" => $forms]);
+    }
+
+    public function remove(Request $request)
+    {
+        $deleteItems = explode(",", $request->sendData);
+        foreach ($deleteItems as $item) {
+            // Person::find($item)->delete();
+            DB::table('people')->where('id', $item)->delete();
+        }
+        return redirect('person/del')->with('result', '削除しました！');;
     }
 }

@@ -93,6 +93,7 @@
                                 <li><a class="dropdown-item" href="{{ url('/person') }}">Find</a></li>
                                 <li><a class="dropdown-item" href="{{url('/person/add')}}">Add</a></li>
                                 <li><a class="dropdown-item" href="{{url('/person/edit')}}">Edit</a></li>
+                                <li><a class="dropdown-item" href="{{url('/person/del')}}">Delete</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -107,6 +108,15 @@
                                     <hr class="dropdown-divider">
                                 </li>
                                 <li><a class="dropdown-item" href="{{url ('/log') }}">Log</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Board
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('/board') }}">index</a></li>
+                                <li><a class="dropdown-item" href="{{url('/board/add')}}">Add</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

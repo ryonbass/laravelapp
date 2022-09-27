@@ -27,7 +27,7 @@
             <th>age: </th>
         </tr>
         @foreach($forms as $form)
-        <input type="hidden" name="id" value="{{$form->id}}">
+        <input type="hidden" name="id[]" value="{{$form->id}}">
         <input type="hidden" name="id{{$form->id}}" value="{{$form->id}}">
         <tr>
             <td><input type="text" name="name{{$form->id}}" value="{{$form->name}}"></td>
