@@ -61,4 +61,4 @@ Route::post('person/del', [PersonController::class, 'remove']);
 //Board
 Route::get('board', [BoardController::class, 'index']);
 Route::get('board/add', [BoardController::class, 'add']);
-Route::post('person/add', [BoardController::class, 'create']);
+Route::post('board/add', [BoardController::class, 'create']);

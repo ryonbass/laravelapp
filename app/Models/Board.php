@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Board extends Model
 {
     use HasFactory;
-    protected $gurded = array('id');
+    protected $fillable = ['title', 'message', 'person_id'];
 
     public static $rules = array(
         'person_id' => 'required',

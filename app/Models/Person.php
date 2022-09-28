@@ -11,7 +11,9 @@ class Person extends Model
 {
     use HasFactory;
     //AIで作られるので用意しなくても良いカラムを指定
-    protected $guarded = array('id');
+    // protected $guarded = array('id');
+
+    protected $fillable = ['name', 'mail', 'age'];
 
     public static $rules = array(
         'name' => 'required',
@@ -56,5 +58,10 @@ class Person extends Model
         parent::boot();
 
         static::addGlobalScope(new ScopePerson);
+    }
+
+    public function board()
+    {
+        return $this->hasOne(board::class, 'person_id', 'id');
     }
 }

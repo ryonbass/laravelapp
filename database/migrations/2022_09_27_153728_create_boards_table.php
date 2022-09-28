@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('boards', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('person_id');
+            $table->id();
+            $table->unsignedBigInteger('person_id')->unique();
             $table->string('title');
             $table->string('message');
+            $table->foreign('person_id')->references('id')->on('people')->onDelete('cascade');
             $table->timestamps();
         });
     }
