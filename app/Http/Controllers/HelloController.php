@@ -9,6 +9,7 @@ use LDAP\Result;
 use Illuminate\Support\Facades\Validator; //バリデータを作成する時に使用
 use function PHPUnit\Framework\isNull;
 use Illuminate\Support\Facades\DB;
+use App\Models\Person;
 
 class HelloController extends Controller
 {
@@ -16,14 +17,19 @@ class HelloController extends Controller
     public function index(Request $request)
     {
 
-        // $items = DB::select('select * from people'); or
-        if (isset($request->id)) {
-            $id = $request->id;
-            $items = DB::table('people')->where('id', '<=', $id)->get();
-        } else {
-            $items = DB::table('people')->orderBy('id')->get();
-        }
-        return view('hello.index', ['items' => $items]);
+        // if (isset($request->id)) {
+        //     $id = $request->id;
+        //     $items = DB::table('people')->where('id', '<=', $id)->get();
+        // } else {
+        //     $items = DB::table('people')->orderBy('id')->get();
+        // }
+
+        //sort
+        $sort = $request->sort;
+        $items = DB::table('people')->orderBy($sort, 'asc')->paginate(5);
+        // $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
+        $param =  ['items' => $items, 'sort' => $sort];
+        return view('hello.index', $param);
     }
 
     public function post(Request $request)

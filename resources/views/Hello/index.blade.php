@@ -10,6 +10,38 @@
     .mainTable {
         border-radius: 10;
     }
+
+    .pagination {
+        font-size: 10pt;
+    }
+
+    .pagination li {
+        display: inline-block;
+    }
+
+    .pre_next {
+        text-align: center;
+    }
+
+    tr th a {
+        text-decoration: none;
+    }
+
+    tr th a:link {
+        color: white;
+    }
+
+    tr th a:visited {
+        color: white;
+    }
+
+    tr th a:hover {
+        color: aqua;
+    }
+
+    tr th a:active {
+        color: white;
+    }
 </style>
 
 @section('content')
@@ -20,9 +52,9 @@
     <div class="col mainTable">
         <table style="margin: 0 auto;">
             <tr>
-                <th>Name</th>
-                <th>Mail</th>
-                <th>Age</th>
+                <th><a href="/hello?sort=name">Name</a></th>
+                <th><a href="/hello?sort=mail">Mail</a></th>
+                <th><a href="/hello?sort=age">Age</a></th>
             </tr>
             @foreach($items as $item)
             <tr>
@@ -32,7 +64,9 @@
             </tr>
             @endforeach
         </table>
+        <div class="pre_next mt-2">{{ $items->appends(['sort' => $sort])->links('pagination::bootstrap-5') }}</div>
     </div>
+
 
     <p>これは<middleware>google.com</middleware>へのリンクです</p>
     <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
