@@ -60,8 +60,13 @@ class Person extends Model
         static::addGlobalScope(new ScopePerson);
     }
 
-    public function board()
+    // public function board() 1to 1
+    // {
+    //     return $this->hasOne(board::class, 'person_id', 'id'); // テーブル、外部キー、主キーかも
+    // }
+
+    public function boards() //1 to many
     {
-        return $this->hasOne(board::class, 'person_id', 'id');
+        return $this->hasMany(Board::class, 'person_id', 'id'); // テーブル、外部キー、主キー
     }
 }

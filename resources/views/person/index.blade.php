@@ -14,13 +14,29 @@
         <th>Person</th>
         <th>Board</th>
     </tr>
-    @foreach($items as $item)
+    @foreach($hasItems as $item)
     <tr>
         <td>{{ $item->getData() }}</td>
-        <td>@if ($item->board != null)
-            {{ $item->board->getData() }}
-            @endif
+        <td>
+            <table width="100%">
+                @foreach($item->boards as $obj)
+                <tr>
+                    <td>{{ $obj->getData() }}</td>
+                </tr>
+                @endforeach
+            </table>
         </td>
+    </tr>
+    @endforeach
+</table>
+<div class="my-2"></div>
+<table>
+    <tr>
+        <th>No board Person</th>
+    </tr>
+    @foreach($noItems as $item)
+    <tr>
+        <td>{{ $item->getData() }}</td>
     </tr>
     @endforeach
 </table>

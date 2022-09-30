@@ -131,4 +131,9 @@ class HelloController extends Controller
         // Log::debug("debug ログ!");
         return view('hello.log');
     }
+
+    public function rest(Request $request)
+    {
+        return view('hello.rest');
+    }
 }

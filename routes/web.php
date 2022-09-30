@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\BoardController;
 use App\Http\Controllers\PersonController;
+use App\Http\Controllers\RestdataController;
 use App\Http\Middleware\HelloMiddleware;
 use App\Http\Middleware\HelloMiddleware2;
 
@@ -29,6 +30,8 @@ Route::get('hello', [HelloController::class, 'index']);
 Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('log', [HelloController::class, 'log']);
+
+Route::get('hello/rest', [HelloController::class, 'rest']);
 
 //データ登録
 Route::get('add', [HelloController::class, 'add']);
@@ -62,3 +65,6 @@ Route::post('person/del', [PersonController::class, 'remove']);
 Route::get('board', [BoardController::class, 'index']);
 Route::get('board/add', [BoardController::class, 'add']);
 Route::post('board/add', [BoardController::class, 'create']);
+
+//Restdata
+Route::resource('rest', RestdataController::class);

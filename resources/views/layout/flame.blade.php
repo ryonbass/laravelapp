@@ -119,6 +119,15 @@
                                 <li><a class="dropdown-item" href="{{url('/board/add')}}">Add</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                RESTful
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('/rest/create') }}">rest/create</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/rest') }}">restdata(json)</a></li>
+                            </ul>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
                         </li>
