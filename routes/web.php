@@ -31,7 +31,12 @@ Route::post('hello', [HelloController::class, 'post']);
 
 Route::get('log', [HelloController::class, 'log']);
 
+//RESTful
 Route::get('hello/rest', [HelloController::class, 'rest']);
+
+//session
+Route::get('hello/session', [HelloController::class, 'ses_get']);
+Route::post('hello/session', [HelloController::class, 'ses_put']);
 
 //データ登録
 Route::get('add', [HelloController::class, 'add']);

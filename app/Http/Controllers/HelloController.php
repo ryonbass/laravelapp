@@ -136,4 +136,19 @@ class HelloController extends Controller
     {
         return view('hello.rest');
     }
+
+    public function ses_get(Request $request)
+    {
+        $sesdata = $request->session()->get('msg');
+        return view('hello.session', ['session_data' => $sesdata]);
+    }
+
+    public function ses_put(Request $request)
+    {
+        //ファイルでsession管理：storage->framework->sessionsに保存されていく
+        //DBでsession管理：セッションテーブルに保存されていく
+        $msg = $request->input;
+        $request->session()->put('msg', $msg);
+        return redirect('hello/session');
+    }
 }
