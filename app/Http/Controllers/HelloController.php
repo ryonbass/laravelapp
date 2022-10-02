@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\HelloRequest;
 use LDAP\Result;
 use Illuminate\Support\Facades\Validator; //バリデータを作成する時に使用
+use Illuminate\Support\Facades\Auth; // 認証機能
 use function PHPUnit\Framework\isNull;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
@@ -24,13 +25,42 @@ class HelloController extends Controller
         //     $items = DB::table('people')->orderBy('id')->get();
         // }
 
+        //auth
+        $user = Auth::user();
         //sort
         $sort = $request->sort;
         $items = DB::table('people')->orderBy($sort, 'asc')->paginate(5);
         // $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
-        $param =  ['items' => $items, 'sort' => $sort];
+        $msg = 'ログインユーザー';
+        $param =  ['items' => $items, 'sort' => $sort, 'user' => $user, 'message' => $msg];
         return view('hello.index', $param);
     }
+
+    public function getAuth(Request $request)
+    {
+        $param = ['message' => 'ログインしてください。'];
+        return view('hello.auth', $param);
+    }
+
+    public function postAuth(Request $request)
+    {
+        $user = Auth::user();
+        $email = $request->email;
+        $password = $request->password;
+        $param = ['email' => $email, 'password' => $password];
+        if (Auth::attempt($param)) {
+            $msg = 'ログインしました';
+            //sort
+            $sort = $request->sort;
+            $items = DB::table('people')->orderBy($sort, 'asc')->paginate(5);
+            $param =  ['items' => $items, 'sort' => $sort, 'user' => $user, 'message' => $msg];
+            return view('hello.index', $param);
+        } else {
+            $msg = 'ログインに失敗しました。';
+        }
+        return view('hello.auth', ['message' => $msg]);
+    }
+
 
     public function post(Request $request)
     {

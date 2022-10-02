@@ -45,9 +45,15 @@
 </style>
 
 @section('content')
+@if(Auth::check())
+<!-- <span style="float:right;">{{ $message }} User: {{ $user->name }}</span> -->
+
+@else
+<p>※ログインしていません。(<a href="/login">ログイン</a>|<a href="/register">登録</a>)</p>
+@endif
 <form method="POST" action="/hello">
     @csrf
-    <p>ここが本文のコンテンツです</p>
+    <p>Laravel 9 TEST PAGE.</p>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
     <div class="col mainTable">
         <table style="margin: 0 auto;">
@@ -71,14 +77,28 @@
     <p>これは<middleware>google.com</middleware>へのリンクです</p>
     <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
 
-    @if(!isset($msg))
+    <!-- @if(!isset($msg))
     @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
     @else
     @include('components.message',['msg_title'=>'POST!','msg_content'=>$msg.' が入力されました!'])
+    @endif -->
+
+    <!-- @if(!isset($msg))
+    @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])
+    @else
+    @include('components.message',['msg_title'=>'POST!','msg_content'=>$msg.' が入力されました!'])
+    @endif -->
+
+    <!-- <input type="text" name="msg"> -->
+    <!-- <button type="submit" class="btn btn-outline-warning">POST</button> -->
+
+
+    @if(!isset($message))
+    @include('components.message',['msg_title'=>$message,'msg_content'=>'サブビューです'])
+    @else
+    @include('components.message',['msg_title'=>$message,'msg_content'=>$user->name])
     @endif
 
-    <input type="text" name="msg">
-    <button type="submit" class="btn btn-outline-warning">POST</button>
 
     <!-- @component ('components.message')
 @slot('msg_title')

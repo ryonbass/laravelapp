@@ -9,7 +9,7 @@
     .msg_title {
         margin: 10px 20px;
         color: #999;
-        font-size: 16pt;
+        font-size: 12pt;
         font-weight: bold;
     }
 
