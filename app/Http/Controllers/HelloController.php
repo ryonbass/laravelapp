@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator; //バリデータを作成する時に
 use function PHPUnit\Framework\isNull;
 use Illuminate\Support\Facades\DB;
 use App\Models\Person;
+use Illuminate\Support\Facades\Auth; //認証機能
 
 class HelloController extends Controller
 {
@@ -24,11 +25,15 @@ class HelloController extends Controller
         //     $items = DB::table('people')->orderBy('id')->get();
         // }
 
+        //auth
+        // $user = Auth::user();
         //sort
         $sort = $request->sort;
         $items = DB::table('people')->orderBy($sort, 'asc')->paginate(5);
         // $items = Person::orderBy($sort, 'asc')->simplePaginate(5);
-        $param =  ['items' => $items, 'sort' => $sort];
+        $msg = 'ログインユーザー';
+        // $param =  ['items' => $items, 'sort' => $sort, 'user' => $user, 'message' => $msg];
+        $param =  ['items' => $items, 'sort' => $sort, 'message' => $msg];
         return view('hello.index', $param);
     }
 
@@ -65,9 +70,11 @@ class HelloController extends Controller
         //         ->withInput();
         // }
         //ここまで
-        $items = DB::select('select * from people');
+        $sort = $request->sort;
+        // $items = DB::select('select * from people');
+        $items = DB::table('people')->orderBy($sort, 'asc')->paginate(5);
         $msg = $request->msg;
-        return view('hello.index', ['msg' => $msg, 'items' => $items]);
+        return view('hello.index', ['msg' => $msg, 'items' => $items, 'sort' => $sort]);
     }
 
     public function add(Request $request)
