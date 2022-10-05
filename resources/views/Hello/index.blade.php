@@ -42,11 +42,76 @@
     tr th a:active {
         color: white;
     }
+
+    img {
+        object-fit: contain;
+    }
+
+    /* テレビ外側 */
+    #carouselExampleIndicators {
+        position: relative;
+        height: 500px;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    #tvImage {
+        object-fit: fill;
+    }
+
+    .tv-inner {
+        position: absolute;
+        top: 8.8%;
+        left: 5.5%;
+        width: 89%;
+        height: 64.3%;
+
+    }
+
+    #carousel-inner {
+        position: absolute;
+        top: 15%;
+        left: 0;
+        height: 70%;
+        width: 100%;
+
+    }
 </style>
 
 @section('content')
 <form method="POST" action="/hello">
     @csrf
+    <!-- カルーセル -->
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+        <img src="/img/PG_language/k0771_7.svg" id="tvImage" class="d-block h-100 w-100 img-fluid" alt="TV image">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="tv-inner">
+            <div class="carousel-inner" id="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/img/PG_language/Java.png" class="d-block h-100 w-100 img-fluid" alt="Java logo image">
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/PG_language/Python.svg.png" class="d-block h-100 w-100 img-fluid" alt="python logo image">
+                </div>
+                <div class="carousel-item">
+                    <img src="/img/PG_language/C_hash_tag.png" class="d-block h-100 w-100 img-fluid" alt="C# logo image">
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
     <p>ここが本文のコンテンツです</p>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
     <div class="col mainTable">
