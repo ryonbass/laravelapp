@@ -136,9 +136,6 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/hello/session') }}">Session</a>
-                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Person
@@ -180,6 +177,8 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ url('/rest/create') }}">rest/create</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/rest') }}">restdata(json)</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/hello/session') }}">Session Test</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -194,6 +193,9 @@
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://prog-8.com/dashboard') }}">Progate</a></li>
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://getbootstrap.jp/docs/5.0/getting-started/introduction/') }}">BootStrap</a></li>
                             </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url('/archive') }}">LC_archive</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>

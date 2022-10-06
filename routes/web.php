@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\HelloController;
-use App\Http\Controllers\BoardController;
-use App\Http\Controllers\PersonController;
-use App\Http\Controllers\RestdataController;
+use App\Http\Controllers\HelloController; //hello
+use App\Http\Controllers\BoardController; //board
+use App\Http\Controllers\PersonController; //person
+use App\Http\Controllers\RestdataController; //restdata
+use App\Http\Controllers\ArchiveController; //archive
 use App\Http\Middleware\HelloMiddleware;
 use App\Http\Middleware\HelloMiddleware2;
 use App\Http\Middleware\Authenticate;
@@ -89,3 +90,6 @@ Route::post('board/add', [BoardController::class, 'create']);
 
 //Restdata
 Route::resource('rest', RestdataController::class);
+
+//archive
+Route::get('archive', [ArchiveController::class, 'leedcode'])->middleware('auth');
