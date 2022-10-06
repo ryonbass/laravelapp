@@ -1,11 +1,5 @@
 @extends('layout.flame')
 
-@section('title','Laravel!')
-
-@section('menubar')
-@parent
-トップページ
-@endsection
 <style>
     .mainTable {
         border-radius: 10;
@@ -78,6 +72,13 @@
     }
 </style>
 
+@section('title','Laravel!')
+
+@section('menubar')
+@parent
+My personal programming learning site.
+@endsection
+
 @section('content')
 <form method="POST" action="/hello">
     @csrf
@@ -88,10 +89,14 @@
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
         </div>
         <div class="tv-inner">
             <div class="carousel-inner" id="carousel-inner">
                 <div class="carousel-item active">
+                    <img src="/img/PG_language/php.png" class="d-block h-100 w-100 img-fluid" alt="php logo image">
+                </div>
+                <div class="carousel-item">
                     <img src="/img/PG_language/Java.png" class="d-block h-100 w-100 img-fluid" alt="Java logo image">
                 </div>
                 <div class="carousel-item">
@@ -112,7 +117,11 @@
         </button>
     </div>
 
-    <p>ここが本文のコンテンツです</p>
+    <div class="py-4">
+        <span>This site is a test site that I created to learn programming. <br>
+            We will update the version of the site from time to time so that we can improve the learning efficiency.<br>
+        </span>
+    </div>
     <!-- <p>ViewComposer value<br>'view_message' = ' $view_message '</p> -->
     <div class="col mainTable">
         <table style="margin: 0 auto;">
