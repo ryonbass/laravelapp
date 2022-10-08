@@ -93,3 +93,5 @@ Route::resource('rest', RestdataController::class);
 
 //archive
 Route::get('archive', [ArchiveController::class, 'leedcode'])->middleware('auth');
+Route::get('archive/add', [ArchiveController::class, 'add'])->middleware('auth');
+Route::post('archive/add', [ArchiveController::class, 'create']);

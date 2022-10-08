@@ -194,12 +194,19 @@
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://getbootstrap.jp/docs/5.0/getting-started/introduction/') }}">BootStrap</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/archive') }}">LC_archive</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Archive
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('/archive') }}">LeedCode</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/archive/add') }}">Add</a></li>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
-                        </li>
+                    </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
+                    </li>
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

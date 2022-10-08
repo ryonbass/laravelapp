@@ -48,18 +48,21 @@ leedcode's archive.
             <p> problem title set </p>
             <table>
                 <tr>
-                    <th>No</th>
-                    <th>title</th>
-                    <th>time</th>
-                    <th>memory</th>
+                    <th><a href="/archive?sort=id">Id</a></th>
+                    <th><a href="/archive?sort=title">Title</a></th>
+                    <th><a href="/archive?sort=difficulty">Difficulty</a></th>
+                    <th>URL</th>
                 </tr>
+                @foreach($data as $problem)
                 <tr>
-                    <td>1</td>
-                    <td>sum roman</td>
-                    <td>32</td>
-                    <td>24</td>
+                    <td>{{ $problem->id }}</td>
+                    <td>{{ $problem->title }}</td>
+                    <td>{{ $problem->difficulty }}</td>
+                    <td><a href="{{ $problem->url }}" target="_blank">Click Here</a></td>
                 </tr>
+                @endforeach
             </table>
+            <div class="pre_next mt-2">{{ $data->appends(['sort' => $sort])->links('pagination::bootstrap-5') }}</div>
         </div>
         <div class="content-right col-7 offset-col-1 row">
             <div class="content-right-over rounded col-12">
