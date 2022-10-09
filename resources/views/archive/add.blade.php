@@ -21,6 +21,14 @@ LeedCodeの記録追加
 @endif
 <form class="row g-3" action="/archive/add" method="post">
     @csrf
+    @error('problem_id')
+    <span class="errmsg">※{{$message}}</span>
+    @enderror
+    <div class="col-md-1">
+        <label for="problem_id" class="form-label">Problem ID
+        </label>
+        <input type="number" class="form-control" id="problem_id" name="problem_id" value="{{old('problem_id')}}">
+    </div>
     <div class="col-md-6">
         <label for="title" class="form-label">Title
             @error('title')
@@ -61,6 +69,23 @@ LeedCodeの記録追加
         </label>
         <textarea class="form-control" id="overview" name="overview">{{old('overview')}}</textarea>
     </div>
+
+
+    <div class="col-4">
+        <label for="exam1" class="form-label">exam1</label>
+        <textarea class="form-control" id="exam1" name="exam1">{{old('exam1')}}</textarea>
+    </div>
+    <div class="col-4">
+        <label for="exam2" class="form-label">exam2</label>
+        <textarea class="form-control" id="exam2" name="exam2">{{old('exam2')}}</textarea>
+    </div>
+    <div class="col-4">
+        <label for="exam3" class="form-label">exam3</label>
+        <textarea class="form-control" id="exam3" name="exam3">{{old('exam3')}}</textarea>
+    </div>
+
+
+
     <div class="col-md-6">
         <label for="url" class="form-label">URL
             @error('url')

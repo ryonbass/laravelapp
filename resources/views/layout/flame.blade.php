@@ -9,6 +9,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>@yield('title')</title>
     <style>
+        .d-flex {
+            justify-content: center;
+            /* padding-top: 10px; */
+            margin-bottom: 0;
+        }
+
+
         .text {
             padding: 30px 0;
             margin-top: 10px;
@@ -172,18 +179,7 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                RESTful
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ url('/rest/create') }}">rest/create</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/rest') }}">restdata(json)</a></li>
-                                <li><a class="dropdown-item" href="{{ url('/hello/session') }}">Session Test</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Study
+                                Link
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://github.com/ryonbass/laravelapp') }}">Github</a></li>
@@ -201,12 +197,22 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" href="{{ url('/archive') }}">LeedCode</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/archive/add') }}">Add</a></li>
+                            </ul>
                         </li>
-                    </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                RESTful
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{{ url('/rest/create') }}">rest/create</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/rest') }}">restdata(json)</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/hello/session') }}">Session Test</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Contact</a>
+                        </li>
                     </ul>
                     <form class="d-flex">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">

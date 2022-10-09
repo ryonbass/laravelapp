@@ -142,8 +142,8 @@ My personal programming learning site.
     </div>
 
 
-    <p>これは<middleware>google.com</middleware>へのリンクです</p>
-    <p>これは<middleware>yahoo.com</middleware>へのリンクです</p>
+    <!-- <p>これは<middleware>google.com</middleware>へのリンクです</p>
+    <p>これは<middleware>yahoo.com</middleware>へのリンクです</p> -->
 
     @if(!isset($msg))
     @include('components.message',['msg_title'=>'Hello!','msg_content'=>'サブビューです'])

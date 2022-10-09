@@ -9,10 +9,11 @@ class ArchiveController extends Controller
 {
     public function leedcode(Request $request)
     {
+        $selectSort = ['problem_id', 'title', 'difficulty', 'create_at'];
         $sort = $request->sort;
-        $data = Problem::orderBy($sort, 'asc')->paginate(3);
+        $data = Problem::orderBy($sort, 'asc')->paginate(10);
 
-        return view('archive.leedcode', ['data' => $data, 'sort' => $sort]);
+        return view('archive.leedcode', ['data' => $data, 'sort' => $sort, 'selectSort' => $selectSort]);
     }
 
     public function add(Request $request)

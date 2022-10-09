@@ -15,11 +15,15 @@ return new class extends Migration
     {
         Schema::create('problems', function (Blueprint $table) {
             $table->id();
+            $table->integer('problem_id');
             $table->string('title');
             $table->string('difficulty');
             $table->string('my_code');
-            $table->string('ex_code');
+            $table->string('ex_code')->nullable();
             $table->string('overview');
+            $table->string('exam1')->nullable();
+            $table->string('exam2')->nullable();
+            $table->string('exam3')->nullable();
             $table->string('url');
             $table->timestamps();
         });
