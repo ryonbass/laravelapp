@@ -11,7 +11,7 @@
         margin-top: 4px;
     }
 
-    #sectionTitle {
+    .sectionTitle {
         font-size: 20px;
     }
 
@@ -22,18 +22,21 @@
 
     .content-left {
         /* border: 1px red solid; */
+        height: 100%;
     }
 
     .overview {
-        height: 35%;
+        height: 53%;
+        overflow: scroll;
+        font-size: 0.7em;
     }
 
     .content-right {
-        /* border: 1px green solid;  */
+        height: 100%;
     }
 
     .content-right-over {
-        height: 50%;
+        height: 90%;
     }
 
     .content-right-under {
@@ -103,6 +106,37 @@
         width: 100%;
     }
 
+    .input-group {
+        height: 100%;
+    }
+
+    /* .form-control-original {
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding: 0.375rem 0.75rem;
+    font-size: 0.5em;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    /* background-clip: padding-box; */
+    /* border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,
+    box-shadow .15s ease-in-out;
+    } */
+
+    .exam-area {
+        height: 10%;
+    }
+
+    .modal-btn {
+        margin: 15px 0;
+    }
+
     .problemData {
         /* display: inline-block; */
         transition: .3s;
@@ -134,7 +168,7 @@ leedcode's archive.
 <div class="row">
     <div class="content-list col-12 row justify-content-evenly">
         <div class="content-left border border-4 rounded col-4">
-            <span id="sectionTitle"> problems </span>
+            <span class="sectionTitle"> problems </span>
 
             <!-- selectboxの保持 -->
             <select name="sortItems" id="sortItems" onchange="selectSort(this);">
@@ -161,28 +195,118 @@ leedcode's archive.
                 </tr>
                 @foreach($data as $problem)
                 <tr class="problemData">
-                    <td class="problemTd" onclick="selectData('{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}');">{{ $problem->problem_id }}</td>
-                    <td class="problemTd" onclick="selectData('{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}');">{{ $problem->title }}</td>
-                    <td class="problemTd" onclick="selectData('{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}');">{{ $problem->difficulty }}</td>
+                    <td class="problemTd" onclick="selectData(['{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}','{{$problem->exam1}}','{{$problem->exam2}}','{{$problem->exam3}}']);">{{ $problem->problem_id }}</td>
+                    <td class="problemTd" onclick="selectData(['{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}','{{$problem->exam1}}','{{$problem->exam2}}','{{$problem->exam3}}']);">{{ $problem->title }}</td>
+                    <td class="problemTd" onclick="selectData(['{{ $problem->my_code}}','{{$problem->ex_code}}','{{$problem->overview }}','{{$problem->exam1}}','{{$problem->exam2}}','{{$problem->exam3}}']);">{{ $problem->difficulty }}</td>
                     <td class="problemTd"><a class="problemURL" href="{{ $problem->url }}" target="_blank">Jump</a></td>
                 </tr>
                 @endforeach
             </table>
             <div class="pre_next mt-2">{{ $data->appends(['sort' => $sort])->links('pagination::bootstrap-5') }}</div>
+            <span class="sectionTitle"> OverView </span>
             <div class="overview border border-3 rounded" id="overview"></div>
         </div>
         <div class="content-right col-7 offset-col-1 row">
             <div class="content-right-over rounded col-12">
                 <div class="input-group">
-                    <span class="input-group-text" style="background-color: orange;">My code</span>
-                    <textarea class=" form-control" id="my_code" style="resize: none;" aria-label="With textarea" readonly></textarea>
+                    <span class="input-group-text" style="background-color: orange; height:100%;">My code</span>
+                    <div class="form-control code-area" style="font-size:0.5em; height:100%; overflow:scroll;" id="my_code"></div>
                 </div>
             </div>
-            <div class="content-right-under rounded col-12">
+            <!-- <div class="content-right-under rounded col-12">
                 <div class="input-group">
                     <span class="input-group-text" style="background-color: orange;">Ex code</span>
-                    <textarea class="form-control" id="ex_code" style="resize: none;" aria-label="With textarea" readonly></textarea>
+                    <div class="form-control-original code-area" id="ex_code"></div>
+                </div> -->
+            <div class="exam-area row">
+                <div class="col-12 btn-area">
+                    <button type="button" class="btn btn-primary col-2 modal-btn" data-bs-toggle="modal" data-bs-target="#exam1">
+                        Exam1
+                    </button>
+                    <button type="button" class="btn btn-primary col-2 offset-1 modal-btn" data-bs-toggle="modal" data-bs-target="#exam2">
+                        Exam2
+                    </button>
+                    <button type="button" class="btn btn-primary col-2 offset-1 modal-btn" data-bs-toggle="modal" data-bs-target="#exam3">
+                        Exam3
+                    </button>
+                    <button type="button" class="btn btn-primary col-2 offset-1 modal-btn" data-bs-toggle="modal" data-bs-target="#ex_code">
+                        Ex Code
+                    </button>
+
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<!-- Modal exam1 -->
+<div class="modal fade" id="exam1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Exam1</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="exam1-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal exam2 -->
+<div class="modal fade" id="exam2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Exam2</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="exam2-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal exam3 -->
+<div class="modal fade" id="exam3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Exam3</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="exam3-content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal ex_code -->
+<div class="modal fade" id="ex_code" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ex Code</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="ex_code_content"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -191,11 +315,14 @@ leedcode's archive.
 @endsection
 
 <script>
-    //クリックしたデータを取得して表示
-    function selectData(my, ex, ov) {
-        document.getElementById('my_code').value = my;
-        document.getElementById('ex_code').value = ex;
-        document.getElementById('overview').textContent = ov;
+    //dataset on click
+    function selectData(arr) {
+        document.getElementById('my_code').innerHTML = arr[0];
+        document.getElementById('ex_code_content').innerHTML = arr[1];
+        document.getElementById('overview').innerHTML = arr[2];
+        document.getElementById('exam1-content').innerHTML = arr[3];
+        document.getElementById('exam2-content').innerHTML = arr[4];
+        document.getElementById('exam3-content').innerHTML = arr[5];
     }
 
     //sort
