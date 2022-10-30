@@ -183,7 +183,7 @@
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://github.com/ryonbass/laravelapp') }}">Github</a></li>
-                                <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://leetcode.com/problemset/all/') }}">Leedcode</a></li>
+                                <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://leetcode.com/problemset/all/') }}">Leetcode</a></li>
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://ap-northeast-1.signin.aws.amazon.com/oauth?response_type=code&client_id=arn%3Aaws%3Asignin%3A%3A%3Aconsole%2Fcanvas&redirect_uri=https%3A%2F%2Fap-northeast-1.console.aws.amazon.com%2Fconsole%2Fhome%3FhashArgs%3D%2523%26isauthcode%3Dtrue%26region%3Dap-northeast-1%26state%3DhashArgsFromTB_ap-northeast-1_a6c4f2707e34e921&forceMobileLayout=0&forceMobileApp=0&code_challenge=O4LUHJgWWWT0EhY_wTBcKaWoIEPR6yuW076Dk_BnkFo&code_challenge_method=SHA-256') }}">AWS</a></li>
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://www.udemy.com/home/my-courses/learning/') }}">Udemy</a></li>
                                 <li><a class="dropdown-item" target="_blank" rel="noopener noreferrer" href="{{ url('https://prog-8.com/dashboard') }}">Progate</a></li>
@@ -195,7 +195,7 @@
                                 Archive
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="{{ url('/archive') }}">LeedCode</a></li>
+                                <li><a class="dropdown-item" href="{{ url('/archive') }}">LeetCode</a></li>
                                 <li><a class="dropdown-item" href="{{ url('/archive/add') }}">Add</a></li>
                             </ul>
                         </li>

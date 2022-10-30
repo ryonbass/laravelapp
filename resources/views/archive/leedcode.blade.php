@@ -153,11 +153,11 @@
 </style>
 
 
-@section('title','LeedCode')
+@section('title','LeetCode')
 
 @section('menubar')
 @parent
-leedcode's archive.
+leetcode's archive.
 @endsection
 
 @section('content')
